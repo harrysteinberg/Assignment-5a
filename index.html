@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Amicable numbers</title>
+	
+	<style>
+		body{
+			background-color: #57FFF9;
+		}
+		
+		h1{
+			text-align: center;
+		}
+		
+		h2{
+			text-align: center;		
+		}
+		
+		h3{
+			text-align: center;		
+		}
+	
+	
+	</style>
+</head>
+
+<body>
+	<h1> The Amicability Checker </h1>
+	
+	<h2> Enter two numbers to see if they are amicable </h2>
+	
+	<h2>
+	<input id = "number1" value="0"> <br />
+	<input id = "number2" value="0"> <br />
+	<button type="button" onClick="checkAmicable()"> Check Amicability </button>
+		
+	<script language="javascript">
+		function checkAmicable(){
+			var num1 = document.getElementById("number1").value;
+			var num2 = document.getElementById("number2").value;
+			document.getElementById("response").innerHTML = "First number: " + num1 
+									+ "<br /> Second Number: " + num2;
+			
+			var amicable_text = "Sorry! Those numbers are not amicable!";
+			
+			var num1_factors = getFactors(num1);
+			var num2_factors = getFactors(num2);
+			
+			var num1_factor_sum = addFactors(num1_factors);
+			var num2_factor_sum = addFactors(num2_factors);
+			
+			if( (num1_factor_sum == num2) && (num2_factor_sum == num1) ){
+				amicable_text = "Congrats! Those numbers are amicable!"
+			}
+			
+			document.getElementById("response").innerHTML = amicable_text;
+			
+			/*
+			Test isFactor code
+			var is_factor = isFactor(220, 12);
+			is_factor = isFactor(5, 5);
+			is_factor = isFactor(220, 20);
+			is_factor = isFactor(0, 80);
+			is_factor = isFactor(67, 1);
+			*/
+			
+			/*
+			Test showFactor code
+			var array1 = [1, 2, 3, 4, 5];
+			var array2 = [0, 0, 1, 4];
+			var array3 = [78];
+			var array4 = ["chocolcate", "vanilla", "sugar", "spice"];
+			showFactors(array1);
+			showFactors(array2);
+			showFactors(array3);
+			showFactors(array4);
+			*/
+			
+			/*
+			Test addFactor code
+			var array1 = [1, 2, 3, 4, 5];
+			var array2 = [0, 0, 1, 4];
+			var array3 = [78];
+			var array4 = [100, 111, 112];
+			addFactors(array1);
+			addFactors(array2);
+			addFactors(array3);
+			addFactors(array4);
+			*/
+			
+			/*
+			Test getFactors code
+			var array = getFactors(220);
+			var array = getFactors(284);
+			var array = getFactors(20);
+			*/
+		}
+		
+		
+		function isFactor(number, test_number){
+			is_factor = false;
+			
+			if((number % test_number) == 0){
+				is_factor = true;
+				
+				// Test display code
+				//console.log("YES");
+			}
+			
+			return is_factor
+		}
+		
+		function showFactors(array){
+			var i;
+			var elements = " ";
+			for(i = 0; i < array.length; i++){
+				elements += array[i];		
+			}
+			
+			// Display elements for test code
+			// console.log(elements);
+		}
+		
+		function addFactors(array){
+			var i;
+			var sum = 0;
+			for(i = 0; i < array.length; i++){
+				sum += parseInt(array[i]);
+			}
+			
+			// Display sum for test code
+			//console.log(sum);	
+			return sum;
+		}
+		
+		function getFactors(number){
+			var factor_array = [];
+			var i;
+			var j = 0;
+			
+			for(i = 0; i < number; i++){
+				if(isFactor(number, i)){
+					factor_array[j] = i;
+				    j++
+				}
+			}
+			
+			console.log(factor_array);
+			return factor_array;
+		}
+		
+		
+		
+	</script>
+	</h2>
+	
+	<h3 id="response"></h3>
+	<h3 id="test_response"></h3>
+	
+	
+</body>
+</html>
